@@ -1,0 +1,68 @@
+[2025-05-20 20:39:22.095] [info] Using configuration file /home/kotmarkot/.config/waybar/config
+[2025-05-20 20:39:22.096] [info] Unable to receive desktop appearance: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Не существует интерфейса “org.freedesktop.portal.Settings” на объекте по пути /org/freedesktop/portal/desktop
+[2025-05-20 20:39:22.097] [info] Using CSS file /home/kotmarkot/.config/waybar/style.css
+[2025-05-20 20:39:22.118] [info] Hyprland IPC starting
+[2025-05-20 20:39:22.137] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 20:39:22.137] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 20:39:22.164] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 20:39:22.164] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 20:39:22.414] [info] Bar configured (width: 1900, height: 28) for output: eDP-1
+[2025-05-20 20:39:22.414] [info] Bar configured (width: 1900, height: 28) for output: DP-2
+[2025-05-20 20:41:50.218] [info] Using configuration file /home/kotmarkot/.config/waybar/config
+[2025-05-20 20:41:50.219] [info] Unable to receive desktop appearance: GDBus.Error:org.freedesktop.DBus.Error.UnknownMethod: Не существует интерфейса “org.freedesktop.portal.Settings” на объекте по пути /org/freedesktop/portal/desktop
+[2025-05-20 20:41:50.219] [info] Using CSS file /home/kotmarkot/.config/waybar/style.css
+[2025-05-20 20:41:50.242] [info] Hyprland IPC starting
+[2025-05-20 20:41:50.243] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 20:41:50.243] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 20:41:50.282] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 20:41:50.282] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 20:41:50.534] [info] Bar configured (width: 1900, height: 28) for output: eDP-1
+[2025-05-20 20:41:50.534] [info] Bar configured (width: 1900, height: 28) for output: DP-2
+[2025-05-20 21:55:19.879] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 21:55:19.887] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 21:55:19.887] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 21:55:19.887] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 21:55:19.888] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 21:55:19.888] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:00:41.121] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:00:41.135] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:00:41.135] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:00:41.135] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:00:41.136] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:00:41.136] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:01:02.228] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:01:02.234] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:01:02.235] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:01:02.235] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:01:02.235] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:01:02.235] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:01:55.661] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:01:55.667] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:01:55.667] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:01:55.667] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:01:55.668] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:01:55.668] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:02:17.121] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:02:17.135] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:02:17.135] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:02:17.135] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:02:17.135] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:02:17.135] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:03:15.013] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:03:15.017] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:03:15.017] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:03:15.017] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:03:15.017] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:03:15.017] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:20:53.203] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:20:53.203] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:20:53.204] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:20:53.204] [info] Hyprland config reloaded, reinitializing hyprland/workspaces module...
+[2025-05-20 22:20:53.204] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:20:53.204] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:22:47.477] [info] Bar removed from output: DP-2
+[2025-05-20 22:22:52.280] [info] Loading persistent workspaces from Waybar config
+[2025-05-20 22:22:52.280] [info] Loading persistent workspaces from Hyprland workspace rules
+[2025-05-20 22:22:52.578] [info] Bar configured (width: 1900, height: 28) for output: DP-2
+[2025-05-20 22:23:09.199] [error] Hyprland IPC: Couldn't read (5)
+Gdk-Message: 22:23:09.199: Error reading events from display: Обрыв канала
