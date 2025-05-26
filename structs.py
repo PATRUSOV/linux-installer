@@ -1,24 +1,27 @@
 from typing import List
 from pathlib import Path
 import utils
+# TODO: Добавить валидацию путям
 
 
 class Config:
-    #def __init__(self) -> None:
-        #"""Путь к конфигу"""
-        #self.source: Path = None
-#
-        #"""Путь к папки в которую будет помещен конфиг"""
-        #self.path: Path = None
-#
-        #"""Бекапить ли существующий конфиг"""
-        #self.backup: bool = False
+    # def __init__(self) -> None:
+    # """Путь к конфигу"""
+    # self.source: Path = None
+    #
+    # """Путь к папки в которую будет помещен конфиг"""
+    # self.path: Path = None
+    #
+    # """Бекапить ли существующий конфиг"""
+    # self.backup: bool = False
 
     def __init__(self, config_dict: dict):
         self.source = Path(config_dict.get("source"))
         self.path = Path(config_dict.get("path"))
-        self.backup = bool(config_dict.get("backup"))
+        # FIXME: Разобраться с преобразованием
+        self.backup = True if config_dict.get("backup") in ["True", "Yes"] else False
 
+    # TODO: Проверка на None
     def install(self) -> None:
         if self.backup:
             try:
@@ -53,16 +56,13 @@ class Package:
     # self.config: Config = config
 
     def __init__(self, package_dict: dict[str, str]) -> None:
-
-        objattr = self.__dict__
+        self.name: str = package_dict.get("name")
+        self.packages: List[str] = package_dict.get("packages")
+        self.preinstall: Path = Path(package_dict.get("preinstall"))
+        self.postinstall: Path = Path(package_dict.get("postinstall"))
+        self.config: Config = Config(package_dict.get("config"))
 
         # Проверка на некорректные поля в конфигурации
         for attr in package_dict:
-            if attr not in objattr.__dict__:
+            if attr not in self.__dict__.keys():
                 raise ValueError(f"Поле {attr} несуществует, исправьте конфиг.")
-
-        self.name: str = package_dict.get("name")
-        self.packages: List[str] = package_dict.get("packages") 
-        self.preinstall: Path = Path(package_dict.get("preinstall"))
-        self.postinstall: Path = Path(package_dict.get("postinstall"))
-        self.config: Config = Config(package_dict.get("config""))
