@@ -1,13 +1,8 @@
-from structs import Package
-from pathlib import Path
-
-
-class Hyprland(Package):
-    packages = ["hyprland"]
-
-    config.source = Path("configs/Hyprland")
-
-    config.path = Path("~/.config")
-
-
-print(Hyprland.config)
+packeges = {
+    "Hyprland": {
+        "packages": ["hyprland"],
+        "config": {"source": "config/hyprland", "path": "~/.config", "backup": "True"},
+        "preinstall": "packages/preinstall.py",
+        "postinstall": "packages/hyprland/postinstall.py",
+    }
+}
