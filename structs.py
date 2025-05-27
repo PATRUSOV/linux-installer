@@ -55,6 +55,7 @@ class Package:
     # self.postinstall: Path = postinstall
     # self.config: Config = config
 
+    # FIXME: Починить словари и разобраться с типами
     def __init__(self, package_dict: dict[str, str]) -> None:
         self.name: str = package_dict.get("name")
         self.packages: List[str] = package_dict.get("packages")
