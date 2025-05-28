@@ -22,7 +22,7 @@ class Package(Installable):
             if not isinstance(package, Installable):
                 raise TypeError(f"{package} не реализует интерфейс Installable")
 
-        self._packages: Tuple[Installable] = packages
+        self._packages: Tuple[Installable, ...] = packages
 
     def install(self) -> None:
         for package in self._packages:
@@ -39,7 +39,7 @@ class Config(Installable):
         self.source: Path = source
 
         path = normalize_path(path)
-        validate_path(path, permissions=os.R_OK, is_file=False)
+        validate_path(path, permissions=os.W_OK, is_file=False)
         self.path: Path = path
 
         self.backup: bool = backup
@@ -54,7 +54,9 @@ class Config(Installable):
         try:
             copy(self.source, self.path)
         except Exception as e:
-            raise RuntimeError(f"Не удалось скопироать файл {self.source}, ошибка: {e}")
+            raise RuntimeError(
+                f"Не удалось скопировать файл {self.source}. Ошибка: {e}"
+            )
 
 
 class Script(Installable):
