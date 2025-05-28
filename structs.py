@@ -1,10 +1,8 @@
 from abc import abstractmethod
-from typing import List, Tuple
+from typing import Tuple
 from pathlib import Path
 from utils import validate_path, normalize_path, copy, backup
 import os
-
-from typing import Optional
 
 
 class Installable:
@@ -70,43 +68,5 @@ class Script(Installable):
         self.path = path
 
     def install(self) -> None:
+        # TODO: Написать реализацию
         pass
-
-
-'''
-class Package(BasePackage):
-    def __init__(
-        self,
-        name: str,
-        packages: Optional[List[str]] = None,
-        preinstall: Optional[str] = None,
-        postinstall: Optional[str] = None,
-        config: Optional[Config] = None,
-    ) -> None:
-        """
-        Структура для конфигурации установки пакета
-
-        Args:
-        name : Имя структуры
-        packages : Имена пакетов которые нужно установть
-        preinstall : Путь к скрипту звпускающемуся до установки
-        postinstall : Путь к путю запускающему посел установки
-        """
-        self.name: str = name
-
-        self.packages: List = packages
-
-        if preinstall is not None:
-            self.preinstall: Path = utils.normalize_path(preinstall)
-            utils.validate_path(self.preinstall, os.W_OK, True)
-
-        if postinstall is not None:
-            self.postinstall: Path = normalize_path(postinstall)
-            validate_path(self.postinstall, os.W_OK, True)
-
-        if config is not None:
-            self.config: Config = config
-
-        def _prepare_script(self, path: str) -> Optional[Path]:
-            path = normalize_path()
-'''
