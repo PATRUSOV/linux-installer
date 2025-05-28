@@ -1,69 +1,112 @@
-from typing import List
+from abc import abstractmethod
+from typing import List, Tuple
 from pathlib import Path
-import utils
-# TODO: Добавить валидацию путям
+from utils import validate_path, normalize_path, copy, backup
+import os
+
+from typing import Optional
 
 
-class Config:
-    # def __init__(self) -> None:
-    # """Путь к конфигу"""
-    # self.source: Path = None
-    #
-    # """Путь к папки в которую будет помещен конфиг"""
-    # self.path: Path = None
-    #
-    # """Бекапить ли существующий конфиг"""
-    # self.backup: bool = False
+class Installable:
+    @abstractmethod
+    def install(self):
+        pass
 
-    def __init__(self, config_dict: dict):
-        self.source = Path(config_dict.get("source"))
-        self.path = Path(config_dict.get("path"))
-        # FIXME: Разобраться с преобразованием
-        self.backup = True if config_dict.get("backup") in ["True", "Yes"] else False
+    # TODO: Добавить имя, то есть до переопределения это будет имя класса наследника
 
-    # TODO: Проверка на None
+
+class Package(Installable):
+    """Базовая структура для устаноки обектов реализующих интерфейс Installable"""
+
+    def __init__(self, *packages: Installable) -> None:
+        # TODO: Написать доки
+        for package in packages:
+            if not isinstance(package, Installable):
+                raise TypeError(f"{package} не реализует интерфейс Installable")
+
+        self._packages: Tuple[Installable] = packages
+
+    def install(self) -> None:
+        for package in self._packages:
+            package.install()
+
+
+class Config(Installable):
+    def __init__(
+        self, source: str | Path, path: str | Path, backup: bool = True
+    ) -> None:
+        # TODO: Написать доки
+        source = normalize_path(source)
+        validate_path(source, permissions=os.R_OK, is_file=None)
+        self.source: Path = source
+
+        path = normalize_path(path)
+        validate_path(path, permissions=os.R_OK, is_file=False)
+        self.path: Path = path
+
+        self.backup: bool = backup
+
     def install(self) -> None:
         if self.backup:
             try:
-                utils.backup(self.path / self.source.name)
+                backup(self.path / self.source.name)
             except FileNotFoundError:
                 pass
-        utils.copy(self.source, self.path)
+
+        try:
+            copy(self.source, self.path)
+        except Exception as e:
+            raise RuntimeError(f"Не удалось скопироать файл {self.source}, ошибка: {e}")
 
 
-class Package:
-    # def __init__(
-    #
-    # self,
-    # name: str,
-    # packages: List[str] = None,
-    # preinstall: Path = None,
-    # postinstall: Path = None,
-    # ) -> None:
-    # """
-    # Структура для конфигурации установки пакета
-    #
-    # Args:
-    # name : Имя структуры
-    # packages : Имена пакетов которые нужно установть
-    # preinstall : Путь к скрипту звпускающемуся до установки
-    # postinstall : Путь к путю запускающему посел установки
-    # """
-    # self.name: str = name
-    # self.packages: List[str] = packages
-    # self.preinstall: Path = preinstall
-    # self.postinstall: Path = postinstall
-    # self.config: Config = config
+class Script(Installable):
+    """Структура отвечает за валидацию и запуск"""
 
-    # FIXME: Починить словари и разобраться с типами
-    def __init__(self, package_dict: dict[str, str]) -> None:
-        self.name: str = package_dict.get("name")
-        self.packages: List[str] = package_dict.get("packages")
-        self.preinstall: Path = Path(package_dict.get("preinstall"))
-        self.postinstall: Path = Path(package_dict.get("postinstall"))
-        self.config: Config = Config(package_dict.get("config"))
+    def __init__(self, path: str | Path) -> None:
+        # TODO: Написать доки
+        path = normalize_path(path)
+        validate_path(path, permissions=os.X_OK, is_file=True)
 
-        # Проверка на некорректные поля в конфигурации
-        for attr in package_dict:
-            if attr not in self.__dict__.keys():
-                raise ValueError(f"Поле {attr} несуществует, исправьте конфиг.")
+        self.path = path
+
+    def install(self) -> None:
+        pass
+
+
+'''
+class Package(BasePackage):
+    def __init__(
+        self,
+        name: str,
+        packages: Optional[List[str]] = None,
+        preinstall: Optional[str] = None,
+        postinstall: Optional[str] = None,
+        config: Optional[Config] = None,
+    ) -> None:
+        """
+        Структура для конфигурации установки пакета
+
+        Args:
+        name : Имя структуры
+        packages : Имена пакетов которые нужно установть
+        preinstall : Путь к скрипту звпускающемуся до установки
+        postinstall : Путь к путю запускающему посел установки
+        """
+        self.name: str = name
+
+        self.packages: List = packages
+
+        if preinstall is not None:
+            self.preinstall: Path = utils.normalize_path(preinstall)
+            utils.validate_path(self.preinstall, os.W_OK, True)
+
+        if postinstall is not None:
+            self.postinstall: Path = normalize_path(postinstall)
+            validate_path(self.postinstall, os.W_OK, True)
+
+        if config is not None:
+            self.config: Config = config
+
+        def _prepare_script(self, path: str) -> Optional[Path]:
+            path = normalize_path()
+'''
