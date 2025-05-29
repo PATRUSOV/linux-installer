@@ -6,6 +6,7 @@ import os
 
 
 class Installable:
+    # TODO: Написать доки
     @abstractmethod
     def install(self):
         pass
@@ -15,6 +16,8 @@ class Installable:
 
 class Package(Installable):
     """Базовая структура для устаноки обектов реализующих интерфейс Installable"""
+
+    # TODO: Написать нормальные доки
 
     def __init__(self, *packages: Installable) -> None:
         # TODO: Написать доки
@@ -30,6 +33,7 @@ class Package(Installable):
 
 
 class Config(Installable):
+    # TODO: Написать доки
     def __init__(
         self, source: str | Path, path: str | Path, backup: bool = True
     ) -> None:
@@ -46,6 +50,7 @@ class Config(Installable):
 
     def install(self) -> None:
         if self.backup:
+            # TODO: ИСПРАВИТЬ ЭТУ ХРЕНЬ
             try:
                 backup(self.path / self.source.name)
             except FileNotFoundError:
@@ -61,6 +66,8 @@ class Config(Installable):
 
 class Script(Installable):
     """Структура отвечает за валидацию и запуск"""
+
+    # TODO: Написать номарльные доки
 
     def __init__(self, path: str | Path) -> None:
         # TODO: Написать доки

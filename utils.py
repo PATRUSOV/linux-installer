@@ -5,6 +5,7 @@ import os
 #TODO: Внедрить normalize_path и validate_path в бекапы (добавить валидацию в общем)
 
 def backup(path: Path) -> None:
+    # TODO: Добавить silent
     if not path.exists():
         raise FileNotFoundError(f"Файл {path} не существует")
     elif path.suffix == ".bak":
@@ -14,6 +15,7 @@ def backup(path: Path) -> None:
 
 
 def ubackup(path: Path) -> None:
+    # TODO: Добавить silen режим
     if not path.exists():
         raise FileNotFoundError(f"Файл {path} не существует")
 
@@ -21,6 +23,7 @@ def ubackup(path: Path) -> None:
 
 
 def copy(src: Path, dst: Path):
+    # TODO: ДОБАВИТЬ ВАЛИДАЦИЮ!!!
     if src.is_dir():
         shutil.copytree(src, dst)
     elif src.is_file():
