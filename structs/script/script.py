@@ -2,6 +2,7 @@ from core import Installable
 from utils import normalize_path, validate_path
 from pathlib import Path
 import os
+from runners import extention_handlers
 
 
 class Script(Installable):
@@ -16,9 +17,7 @@ class Script(Installable):
 
         self.path = path
 
-        self._extention_handlers = {".py": PythonRunner, ".sh": ShellRunner}
-
-        self.configurator = self._extention_handlers[self.path.suffix]
+        self.runner = extention_handlers[self.path.suffix](path)
 
     def install(self) -> None:
-        self.configurator.run()
+        self.runner.run()
