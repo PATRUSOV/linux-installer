@@ -6,5 +6,3 @@ class Installable:
     @abstractmethod
     def install(self):
         pass
-
-    # TODO: Добавить имя, то есть до переопределения это будет имя класса наследника

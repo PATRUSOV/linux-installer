@@ -1,6 +1,7 @@
 from core import Installable
-from pathlib import Path
 from utils import normalize_path, validate_path
+from pathlib import Path
+import os
 
 
 class Script(Installable):
