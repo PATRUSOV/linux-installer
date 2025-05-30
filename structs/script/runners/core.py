@@ -7,10 +7,17 @@ from subprocess import Popen
 
 
 class ScriptRunner(ABC):
-    def __init__(self) -> None:
+    def __init__(self, path: Path) -> None:
+        # TODO: Написать доки
+
+        # Путь к исполняемому файлус
+        self.path = path
+
         # script working directory path
         self.cwd: Optional[Path] = None
+
         # TODO: Добавить дополнительные праметры и сетеры
+
         ## path to stdin log file
         # self.stdin: Optional[Path] = None
 
