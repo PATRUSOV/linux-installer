@@ -20,4 +20,6 @@ class Script(Installable):
         self.runner = extention_handlers[self.path.suffix](path)
 
     def install(self) -> None:
-        self.runner.run()
+        script = self.runner.run()
+
+        script.wait()
