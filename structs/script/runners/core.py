@@ -20,5 +20,4 @@ class ScriptRunner(ABC):
 
     @abstractmethod
     def run(self) -> Popen[Any]:
-        # TODO: Подумать над return
         pass
