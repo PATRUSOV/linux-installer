@@ -1,7 +1,7 @@
-from ABC import abstractmethod
+from abc import abstractmethod, ABC
 
 
-class Installable:
+class Installable(ABC):
     # TODO: Написать доки
     @abstractmethod
     def install(self):
