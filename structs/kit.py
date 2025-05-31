@@ -2,7 +2,7 @@ from core import Installable
 from typing import Tuple
 
 
-class Package(Installable):
+class Kit(Installable):
     """Базовая структура для устаноки обектов реализующих интерфейс Installable"""
 
     # TODO: Написать нормальные доки
