@@ -1,5 +1,5 @@
 from core import Installable
-from utils import normalize_path, validate_path
+from utils.path import normalize_path, validate_path
 from pathlib import Path
 import os
 from runners import extention_handlers

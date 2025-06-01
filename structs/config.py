@@ -1,4 +1,4 @@
-from utils import backup, normalize_path, validate_path, copy
+from utils.path import backup, normalize_path, validate_path, copy
 from pathlib import Path
 from core import Installable
 import os

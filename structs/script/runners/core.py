@@ -1,7 +1,7 @@
 from abc import abstractmethod, ABC
 from pathlib import Path
 from typing import Optional, Any
-from utils import normalize_path, validate_path
+from utils.path import normalize_path, validate_path
 import os
 from subprocess import Popen
 

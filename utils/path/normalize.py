@@ -14,6 +14,7 @@ def normalize_path(path: str | Path) -> Path:
     env = os.environ
 
     # TODO: дописать переменные среды
+    # для написния можно использовать regex но в силу незнаия регулярок во избежании говнокода просто навайдкодю функуию заменты
 
     path = Path(str(path).replace("$HOME", str(path.home())))
     # TODO: добавить поддержку переменных среды
