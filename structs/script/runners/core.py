@@ -7,6 +7,9 @@ from subprocess import Popen
 
 
 class ScriptRunner(ABC):
+    """Вспомогательный абстрактный класс для класса Script.
+    Отвечает за запуск скрипта. (не за валидацию и т.д.)"""
+
     def __init__(self, path: Path) -> None:
         # TODO: Написать доки
 
