@@ -2,7 +2,8 @@ from pathlib import Path
 import shutil
 import os
 
-#TODO: Внедрить normalize_path и validate_path в бекапы (добавить валидацию в общем)
+# TODO: Внедрить normalize_path и validate_path в бекапы (добавить валидацию в общем)
+
 
 def backup(path: Path) -> None:
     # TODO: Добавить silent
@@ -15,21 +16,23 @@ def backup(path: Path) -> None:
 
 
 def ubackup(path: Path) -> None:
-    # TODO: Добавить silen режим
     if not path.exists():
         raise FileNotFoundError(f"Файл {path} не существует")
 
     path.rename(path.stem)
 
 
-def copy(src: Path, dst: Path):
-    # TODO: ДОБАВИТЬ ВАЛИДАЦИЮ!!!
+def copy(src: Path | str, dst: Path | str):
+    src = normalize_path(src)
+    dst = normalize_path(dst)
+    validate_path(src, permissions=os.R_OK)
+    validate_path(dst, permissions=os.X_OK + os.W_OK, is_file=False)
     if src.is_dir():
         shutil.copytree(src, dst)
     elif src.is_file():
         shutil.copy(src, dst)
     else:
-        raise ValueError(f"{src} не являеться ни файлом и не директориq")
+        raise ValueError(f"{src} не являеться ни файлом и не директорией")
 
 
 def normalize_path(path: str | Path) -> Path:
@@ -41,7 +44,8 @@ def normalize_path(path: str | Path) -> Path:
 
     path = path.expanduser()
 
-    path = Path(str(path).replace("$HOME", Path.home()))
+    path = Path(str(path).replace("$HOME", str(path.home())))
+    # TODO: добавить поддержку переменных среды
 
     path = path.resolve(strict=False)
 
@@ -59,4 +63,6 @@ def validate_path(path: Path, permissions: int, is_file: bool | None = None) -> 
 
     if is_file is not None:
         if path.is_file() != is_file:
-            raise TypeError(f"{path} не являеться {"файлом" if is_file else "директорией"})
+            raise TypeError(
+                f"{path} не являеться {'файлом' if is_file else 'директорией'}"
+            )
