@@ -1,20 +1,25 @@
-from pathlib import (
-    Path,
-)  # TODO: Внедрить normalize_path и validate_path в бекапы (добавить валидацию в общем)
+from pathlib import Path
+from utils.path import normalize_path, validate_path
+import os
 
 
-def backup(path: Path) -> None:
-    # TODO: Добавить silent
-    if not path.exists():
-        raise FileNotFoundError(f"Файл {path} не существует")
-    elif path.suffix == ".bak":
-        return
+def backup(path: Path | str) -> None:
+    # validation
+    path = normalize_path(path)
+    validate_path(path, permissions=os.W_OK)
 
-    path.rename(path.name + ".bak")
+    if path.suffix == ".bak":
+        raise ValueError(f"{path.name} уже являеться бекапом")
+
+    path = path.with_name(path.name + ".bak")
 
 
-def ubackup(path: Path) -> None:
-    if not path.exists():
-        raise FileNotFoundError(f"Файл {path} не существует")
+def ubackup(path: Path | str) -> None:
+    # validation
+    path = normalize_path(path)
+    validate_path(path, permissions=os.W_OK)
 
-    path.rename(path.stem)
+    if path.suffix == ".bak":
+        path = path.with_name(path.stem)
+    else:
+        raise ValueError(f"{path.name} не являеться бекапа отсутвует .bak")
