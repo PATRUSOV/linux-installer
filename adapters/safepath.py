@@ -15,9 +15,10 @@ class SafePath:
         # TODO: Доки
         # TODO: Добавить флаг strict, то есть нужна ли валидаци или нет
         self._path = self._normalize(path)
+        # FIX: Придумать куда засунуть аргументы
         self._permissions = permissions
         self._is_file = is_file
-        self._validate()
+        self._validate(self._path)
 
     def _normalize(self, path: Path | str) -> Path:
         """Разворачивает путь"""
@@ -56,35 +57,33 @@ class SafePath:
         """Разворачивание пути с учетом символических ссылок"""
         return path.resolve(strict=False)
 
-    def _validate(self) -> None:
+    def _validate(self, path: Path) -> None:
         """Проверяет путь по критериям из конструктора"""
 
-        self.__check_exists()
-        self.__check_permissions()
-        self.__check_is_file()
+        # TODO: Silent режим то есть добавить поддержку None
+        # вся валидация на None должна быть в этот функции
+        self.__check_exists(path)
+        self.__check_permissions(path, self._permissions)
+        self.__check_is_file(path, self._is_file)
 
-    def __check_exists(self) -> None:
+    def __check_exists(self, path: Path) -> None:
         """Проверка на существование"""
-        path = self._path
 
         if not path.exists():
             raise FileNotFoundError(f"{path} - не существует")
 
-    def __check_permissions(self) -> None:
+    def __check_permissions(self, path: Path, permissions: int) -> None:
         """Проверка доступа"""
-        path = self._path
-        permissions = self._permissions
 
         if not os.access(path, permissions):
             raise PermissionError(
                 f"Не удалось получить доступ к {path} - не хватает прав."
             )
 
-    def __check_is_file(self) -> None:
+    def __check_is_file(self, path: Path, is_file: bool) -> None:
         """Проверка на файл/дирректорию"""
-        path = self._path
-        is_file = self._is_file
 
+        # FIXME: Убрать это отсюда
         if is_file is not None:
             if path.is_file() != is_file:
                 raise TypeError(
