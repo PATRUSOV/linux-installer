@@ -1,10 +1,11 @@
 from pathlib import Path
-from _validate import validate_path
-from _normalize import normalize_path
+from ._validate import validate_path
+from ._normalize import normalize_path
 from typing import Optional
 
 
 def get_safe_path(
+    # TODO: Добавить доки
     path: str | Path,
     *,
     silent: bool = False,

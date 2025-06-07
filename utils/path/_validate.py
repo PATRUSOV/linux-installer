@@ -12,6 +12,7 @@ def validate_path(
     is_file: Optional[bool],
 ) -> None:
     """Проверяет путь"""
+    # TODO: Добавить описание аргментов в доки
 
     if not silent:
         _check_exists(path)
