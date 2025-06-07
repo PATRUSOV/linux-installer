@@ -11,7 +11,11 @@ def not_none_arg(arg_name):
             bound = signature.bind(*args, **kwargs)
             bound.apply_defaults()
 
-            # TODO: Добавить проверку есть ли у функции аргмент arg_name
+            if arg_name not in bound.arguments:
+                raise ValueError(
+                    f"Функция {func.__name__} не имеет аргумента {arg_name}"
+                )
+
             if bound.arguments[arg_name] is None:
                 return None
 
