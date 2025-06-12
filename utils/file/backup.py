@@ -3,12 +3,12 @@ import os
 from utils.path import get_safe_path
 
 # ПРИ ПЕРЕИМЕНОВАНИИ ВО ИЗБЕЖАНИИ БАГОВ НУЖЕН АБСОЛЮТНЫЙ ПУТЬ, get_safe_path() это обеспечивает
-# FIXME: УБрать валидацию из backup и ubackup
 
 
-def backup(path: Path | str) -> None:
-    # TODO: Добавить доки
-    path = get_safe_path(path, permissions=os.W_OK)
+def backup(path: Path | str, raw: bool = False) -> None:
+    """Добавляет суффик .bak к имени файла"""
+    if not raw:
+        path = get_safe_path(path, permissions=os.W_OK)
 
     if path.suffix == ".bak":
         raise ValueError(f"{path.name} уже являеться бекапом")
@@ -16,9 +16,10 @@ def backup(path: Path | str) -> None:
     path = path.rename(str(path) + ".bak")
 
 
-def ubackup(path: Path | str) -> None:
-    # TODO: Добавить доки
-    path = get_safe_path(path, permissions=os.W_OK)
+def ubackup(path: Path | str, raw: bool = False) -> None:
+    """Убирает суффикс .bak у имени файлы"""
+    if not raw:
+        path = get_safe_path(path, permissions=os.W_OK)
 
     if path.suffix == ".bak":
         path = path.rename(str(path)[0:-4])
